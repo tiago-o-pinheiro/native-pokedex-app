@@ -6,8 +6,13 @@
       "@assets/*": ["src/assets/*"],
       "@config/*": ["src/config/*"],
       "@theme/*": ["src/theme/*"],
+      "@hooks/*": ["src/shared/hooks/*"],
+      "@stores/*": ["src/shared/stores/*"],
+      "@domain/*": ["src/domain/*"],
+      "@infrasctructure/*": ["src/infrastructure/*"],
       "@navigation/*": ["src/presentation/navigation/*"],
-      "@screens/*": ["src/presentation/screens/*"]
+      "@screens/*": ["src/presentation/screens/*"],
+      "@components/*": ["src/presentation/components/*"]
     }
   }
 }
