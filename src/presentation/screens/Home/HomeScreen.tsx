@@ -1,9 +1,11 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {Button, Text} from 'react-native-paper';
 
 export const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>HomeScreen</Text>
+      <Text variant="displaySmall">Display Large</Text>
+      <Button mode="contained">Press Me</Button>
     </View>
   );
 };
