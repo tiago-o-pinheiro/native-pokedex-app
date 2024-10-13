@@ -8,9 +8,16 @@ import {FadeInImage} from '../ui/FadeInImage';
 
 const pokeball = require('@assets/images/pokeball-light.png');
 
-export const PokemonCard = ({id, name, types, avatar, sprites}: Pokemon) => {
+export const PokemonCard = ({
+  id,
+  name,
+  types,
+  avatar,
+  sprites,
+  color,
+}: Pokemon) => {
   return (
-    <Card style={[styles.cardContainer]}>
+    <Card style={[styles.cardContainer, {backgroundColor: color}]}>
       <Text style={styles.name} variant="bodyLarge" lineBreakMode="middle">
         {name}
         {'\n#' + id}

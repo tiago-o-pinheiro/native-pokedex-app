@@ -9,5 +9,5 @@ export interface Pokemon {
   types: PokemonType[];
   avatar: string;
   sprites: string[];
-  //color: string;
+  color?: string;
 }
