@@ -6,6 +6,7 @@
       "@assets/*": ["src/assets/*"],
       "@config/*": ["src/config/*"],
       "@theme/*": ["src/theme/*"],
+      "@actions/*": ["src/actions/*"],
       "@hooks/*": ["src/shared/hooks/*"],
       "@stores/*": ["src/shared/stores/*"],
       "@domain/*": ["src/domain/*"],
