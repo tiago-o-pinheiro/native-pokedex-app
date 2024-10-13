@@ -13,7 +13,6 @@ export const useGetPokemons = () => {
         page,
         40,
       )) as Pokemon[];
-      console.log(response[0]);
       return response;
     } catch (error) {
       console.error('Error fetching pokemons');
