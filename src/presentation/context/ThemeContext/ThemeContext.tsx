@@ -1,11 +1,12 @@
 import {createContext, PropsWithChildren} from 'react';
-import {StyleSheet, Text, useColorScheme, View} from 'react-native';
+import {useColorScheme} from 'react-native';
 
 import {
   NavigationContainer,
   DarkTheme as NavigationDarkTheme,
   DefaultTheme as NavigationDefaultTheme,
 } from '@react-navigation/native';
+
 import {adaptNavigationTheme, PaperProvider} from 'react-native-paper';
 import {NavigationTheme} from 'react-native-paper/lib/typescript/types';
 
