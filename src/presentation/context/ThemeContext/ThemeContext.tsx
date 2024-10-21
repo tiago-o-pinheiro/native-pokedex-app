@@ -20,15 +20,33 @@ const {LightTheme, DarkTheme} = adaptNavigationTheme({
   reactNavigationDark: NavigationDarkTheme,
 });
 
+const CustomLightTheme = {
+  ...LightTheme,
+  colors: {
+    ...LightTheme.colors,
+    primary: '#393939',
+    outline: '#c5c5c5',
+  },
+};
+
+const CustomDarkTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    primary: 'white',
+    outline: 'white',
+  },
+};
+
 export const ThemeContext = createContext<ThemeContextProps>({
   isDark: false,
-  theme: LightTheme,
+  theme: CustomLightTheme,
 });
 
 export const ThemeContentProvider = ({children}: PropsWithChildren) => {
   const colorScheme = useColorScheme();
   const isDark = colorScheme === 'dark';
-  const theme = isDark ? DarkTheme : LightTheme;
+  const theme = isDark ? CustomDarkTheme : CustomLightTheme;
 
   return (
     <PaperProvider theme={theme}>
