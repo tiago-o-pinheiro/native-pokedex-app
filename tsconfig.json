@@ -6,8 +6,15 @@
       "@assets/*": ["src/assets/*"],
       "@config/*": ["src/config/*"],
       "@theme/*": ["src/theme/*"],
+      "@actions/*": ["src/actions/*"],
+      "@hooks/*": ["src/shared/hooks/*"],
+      "@stores/*": ["src/shared/stores/*"],
+      "@domain/*": ["src/domain/*"],
+      "@infrasctructure/*": ["src/infrastructure/*"],
+      "@presentation/*": ["src/presentation/*"],
       "@navigation/*": ["src/presentation/navigation/*"],
-      "@screens/*": ["src/presentation/screens/*"]
+      "@screens/*": ["src/presentation/screens/*"],
+      "@components/*": ["src/presentation/components/*"]
     }
   }
 }

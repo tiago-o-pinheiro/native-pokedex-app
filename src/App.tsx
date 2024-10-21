@@ -1,17 +1,18 @@
+import {Navigator} from '@navigation/Navigation';
 import {NavigationContainer} from '@react-navigation/native';
-import {StyleSheet, Text, View} from 'react-native';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {PaperProvider} from 'react-native-paper';
 import 'react-native-gesture-handler';
+import {ThemeContentProvider} from '@presentation/context/ThemeContext/ThemeContext';
+
+const queryClient = new QueryClient();
 
 export const App = () => {
   return (
-    <NavigationContainer>
-      <View style={styles.container}>
-        <Text>App</Text>
-      </View>
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <ThemeContentProvider>
+        <Navigator />
+      </ThemeContentProvider>
+    </QueryClientProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {},
-});
