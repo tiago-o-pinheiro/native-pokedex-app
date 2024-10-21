@@ -1,17 +1,15 @@
 import {getPokemon} from '@actions/use-cases/get-pokemon.use-case';
 import {pokeApiFetcher} from '@config/adapters/pokeAPI.adapter';
 import {Pokemon} from '@domain/entities/pokemons';
-import {useQuery} from '@tanstack/react-query';
-import {useState} from 'react';
+import {useInfiniteQuery} from '@tanstack/react-query';
 
 export const useGetPokemons = () => {
-  const [page, setPage] = useState<number>(0);
-  const fetchPokemons = async () => {
+  const fetchPokemons = async (page: number) => {
     try {
       const response = (await getPokemon(
         pokeApiFetcher,
         page,
-        40,
+        20,
       )) as Pokemon[];
       return response;
     } catch (error) {
@@ -19,15 +17,14 @@ export const useGetPokemons = () => {
     }
   };
 
-  const {
-    isLoading,
-    isError,
-    data = [],
-  } = useQuery({
-    queryKey: ['pokemons'],
-    queryFn: () => fetchPokemons(),
+  const {isLoading, isError, data, fetchNextPage} = useInfiniteQuery({
+    queryKey: ['pokemons', 'infinity'],
+    initialPageParam: 0,
+    queryFn: params => fetchPokemons(params.pageParam),
     staleTime: 1000 * 60 * 60,
+    getNextPageParam: (lastPage, allPages) =>
+      lastPage ? allPages.length : undefined,
   });
 
-  return {pokemons: data, isLoading, isError};
+  return {pokemons: data, isLoading, isError, fetchNextPage};
 };
