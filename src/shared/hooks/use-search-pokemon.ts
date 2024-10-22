@@ -1,8 +1,10 @@
 import {getPokemonNamesWithId, getPokemonsByIds} from '@actions/use-cases';
 import {useQuery} from '@tanstack/react-query';
 import {useMemo} from 'react';
+import {useDebounceValue} from './use-debounce-value';
 
 export const useSearchPokemon = (query: string) => {
+  const {debounceValue} = useDebounceValue(query, 500);
   const {isLoading, data: pokemonNameList} = useQuery({
     queryKey: ['pokemon', 'all'],
     queryFn: () => getPokemonNamesWithId(),
@@ -10,25 +12,27 @@ export const useSearchPokemon = (query: string) => {
   });
 
   const pokemonIdList = useMemo(() => {
-    if (!isNaN(Number(query))) {
+    if (!isNaN(Number(debounceValue))) {
       return (
-        pokemonNameList?.filter(pokemon => pokemon.id === Number(query)) || []
+        pokemonNameList?.filter(
+          pokemon => pokemon.id === Number(debounceValue),
+        ) || []
       );
     }
 
-    if (query === '') {
+    if (debounceValue === '') {
       return [];
     }
 
-    if (query.length < 3) {
-      return pokemonNameList || [];
+    if (debounceValue.length < 3) {
+      return [];
     }
     return (
       pokemonNameList?.filter(pokemon =>
-        pokemon.name.includes(query.toLocaleLowerCase()),
+        pokemon.name.includes(debounceValue.toLocaleLowerCase()),
       ) || []
     );
-  }, [query]);
+  }, [debounceValue]);
 
   const {isLoading: isLoadingPokemons, data: pokemons = []} = useQuery({
     queryKey: ['pokemon', 'by', pokemonIdList],

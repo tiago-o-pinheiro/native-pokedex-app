@@ -7,7 +7,6 @@ interface SearchResponse {
 }
 
 export const getPokemonNamesWithId = async (): Promise<SearchResponse[]> => {
-  console.log('calling getPokemonNamesWithId');
   const url = `pokemon?limit=1000`;
   const result = await pokeApiFetcher.get<PokemonResponse>(url);
 

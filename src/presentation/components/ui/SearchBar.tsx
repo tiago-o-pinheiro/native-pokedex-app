@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import {StyleProp, StyleSheet, View, ViewStyle} from 'react-native';
 import {TextInput} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
