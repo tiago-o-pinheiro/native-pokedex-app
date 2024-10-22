@@ -9,7 +9,7 @@ import {PokemonsMapper} from '@infrasctructure/mapper/pokemons.mapper';
 export const getPokemon = async (
   fetcher: HttpAdapter,
   page: number,
-  limit: number,
+  limit: number = 10,
 ): Promise<Pokemon[]> => {
   try {
     const {results} = await fetcher.get<PokemonResponse>(
