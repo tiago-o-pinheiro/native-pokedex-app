@@ -5,7 +5,7 @@ import {RootStackParamList} from '@presentation/navigation/Navigation';
 import {globalTheme} from '@presentation/theme/global-theme';
 import {StackScreenProps} from '@react-navigation/stack';
 import {gaps} from '@theme/gaps';
-import {Platform, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {ActivityIndicator, FAB, Text, useTheme} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -31,7 +31,7 @@ export const HomeScreen = ({navigation}: Props) => {
       />
       <PokeballBg styles={styles.imageStyles} />
       <FlatList
-        data={pokemons?.pages.flat() ?? []}
+        data={pokemons}
         renderItem={({item}) => (item ? <PokemonCard pokemon={item} /> : null)}
         keyExtractor={(item, index) => `${item?.id}-${index}`}
         numColumns={2}
