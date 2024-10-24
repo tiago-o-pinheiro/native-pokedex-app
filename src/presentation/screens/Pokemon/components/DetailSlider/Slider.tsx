@@ -47,14 +47,18 @@ const isActive = (index: number, currentIndex: number) => {
 
 export const DetailSlider = ({pokemon}: {pokemon?: Pokemon}) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const {height} = useWindowDimensions();
+  const {height, width} = useWindowDimensions();
   const sliderRef = useRef<FlatList>(null);
   const {colors} = useTheme();
 
   const onScroll = (ev: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const {contentOffset, layoutMeasurement} = ev.nativeEvent;
-    const currentIndex = Math.floor(contentOffset.x / layoutMeasurement.width);
-    setCurrentIndex(currentIndex > 0 ? currentIndex : 0);
+    const {contentOffset} = ev.nativeEvent;
+    const currentIndex = Math.ceil(contentOffset.x / width);
+    const comparedIndex =
+      currentIndex > SliderOptions.length - 1
+        ? SliderOptions.length - 1
+        : currentIndex;
+    setCurrentIndex(comparedIndex > 0 ? comparedIndex : 0);
   };
 
   const scrollToSlide = (index: number) => {
